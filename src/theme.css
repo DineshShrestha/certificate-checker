@@ -1,21 +1,9 @@
-.logo{
-    position:relative;
-    height: 150px;
-    width: 300px;
-}
-
-.logo img{
-  max-width: 100%;
-  min-height: auto;
-}
-.featureIcon{
-  margin-top: 8px;
-}
+/* src/theme.css */
 :root {
-  --primary-color: #3498db;
-  --secondary-color: #2ecc71;
+  --primary-color: #28A745;
+  --secondary-color:grey;
   --background-color: #f5f5f5;
-  --text-color: #333;
+  --text-color: black;
 }
 
 body {
@@ -36,9 +24,8 @@ body {
   background-color: var(--secondary-color);
 }
 
-h1, h2,h3{
-  color:#28A745;
-}
-p{
-  color: #333;
+h3{
+    color: #28A745;
+    font-weight: bold;
+    font-size:xx-large;
 }
