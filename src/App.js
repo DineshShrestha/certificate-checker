@@ -4,6 +4,7 @@ import Footer from './components/Footer';
 import Pricing from './components/Pricing';
 import Hero from './components/Hero';
 import Feature from './components/Feature';
+import Customer from './components/Customer';
 import "./App.css"
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
             <Hero/>
             <Feature/>
             <Pricing/>
+            <Customer/>
             <Footer/>
           </div>
   );
