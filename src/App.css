@@ -42,3 +42,15 @@ h1, h2,h3, h5{
 p{
   color: #333;
 }
+
+.carousel .carousel-item {
+  height: 400px;
+}
+
+.carousel-item img {
+    position: absolute;
+    object-fit: cover;
+    top: 0;
+    left: 0;
+    min-height: 400px;
+}
