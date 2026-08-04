@@ -1,46 +1,14 @@
-.logo{
-    position:relative;
-    height: 150px;
-    width: 300px;
-}
-
-.logo img{
-  max-width: 100%;
-  min-height: auto;
+.logo-mark {
+  color: var(--text-color);
 }
 .featureIcon{
   margin-top: 8px;
 }
-:root {
-  --primary-color: #3498db;
-  --secondary-color: #2ecc71;
-  --background-color: #f5f5f5;
-  --text-color: #333;
+h1, h2, h3, h5 {
+  color: var(--primary-color);
 }
-
-body {
-  background-color: var(--background-color);
+p {
   color: var(--text-color);
-}
-
-.button {
-  background-color: var(--primary-color);
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.button:hover {
-  background-color: var(--secondary-color);
-}
-
-h1, h2,h3, h5{
-  color:#28A745;
-}
-p{
-  color: #333;
 }
 
 .carousel .carousel-item {

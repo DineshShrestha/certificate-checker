@@ -1,43 +1,31 @@
 
 import React from 'react'
-import logo from "../assets/images/cert.png"
+import Logo from './Logo'
+
+const FOOTER_COLUMNS = [
+  { title: 'Product', links: ['Check a Certificate', 'Features', 'Pricing'] },
+  { title: 'Resources', links: ['Documentation', 'API', 'Status'] },
+  { title: 'Company', links: ['About', 'Privacy', 'Terms'] },
+]
+
 const Footer = ()=>{
   return (
-    <footer class="pt-4 my-md-5 pt-md-5 border-top">
-    <div class="row">
-      <div class="col-12 col-md logo">
-        <img class="mb-0" src={logo} alt="logo"/>
+    <footer className="pt-4 my-md-5 pt-md-5 border-top">
+    <div className="row">
+      <div className="col-12 col-md logo">
+        <Logo/>
       </div>
-      <div class="col-6 col-md">
-        <h5>Features</h5>
-        <ul class="list-unstyled text-small">
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Cool stuff</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Random feature</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Team feature</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Stuff for developers</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Another one</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Last time</a></li>
-        </ul>
-      </div>
-      <div class="col-6 col-md">
-        <h5>Resources</h5>
-        <ul class="list-unstyled text-small">
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Resource</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Resource name</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Another resource</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Final resource</a></li>
-        </ul>
-      </div>
-      <div class="col-6 col-md">
-        <h5>About</h5>
-        <ul class="list-unstyled text-small">
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Team</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Locations</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Privacy</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Terms</a></li>
-        </ul>
-      </div>
-      <small class="d-block mb-5 text-muted mt-0">© 2017–2024</small>
+      {FOOTER_COLUMNS.map((column) => (
+        <div className="col-6 col-md" key={column.title}>
+          <h5>{column.title}</h5>
+          <ul className="list-unstyled text-small">
+            {column.links.map((link) => (
+              <li className="mb-1" key={link}><a className="link-secondary text-decoration-none" href="#">{link}</a></li>
+            ))}
+          </ul>
+        </div>
+      ))}
+      <small className="d-block mb-5 text-muted mt-0">&copy; 2017&ndash;{new Date().getFullYear()} Certificate Checker</small>
     </div>
   </footer>
   )

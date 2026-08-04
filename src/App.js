@@ -5,12 +5,14 @@ import Pricing from './components/Pricing';
 import Hero from './components/Hero';
 import Feature from './components/Feature';
 import Customer from './components/Customer';
+import CertificateChecker from './components/CertificateChecker';
 import "./App.css"
 function App() {
   return (
           <div className="container">
             <Header/>
             <Hero/>
+            <CertificateChecker/>
             <Feature/>
             <Pricing/>
             <Customer/>
