@@ -26,17 +26,27 @@ export function getCertStatus(notAfter, now = new Date()) {
   return { status: 'valid', daysLeft };
 }
 
+// crt.sh's backend is a shared, unauthenticated public service and often returns
+// a transient 502/404/empty body under load. Retry a few times before giving up.
+async function fetchCrtSh(host, attempts = 3) {
+  for (let attempt = 1; attempt <= attempts; attempt++) {
+    try {
+      const response = await fetch(`${CRTSH_URL}${encodeURIComponent(host)}&output=json`);
+      const text = await response.text();
+      if (response.ok && text.trim()) return JSON.parse(text);
+    } catch {
+      // fall through to retry
+    }
+    if (attempt < attempts) await new Promise((r) => setTimeout(r, attempt * 800));
+  }
+  throw new Error('crt.sh lookup failed after retries. Try again shortly.');
+}
+
 export async function checkCertificate(domain) {
   const host = normalizeDomain(domain);
   if (!host) throw new Error('Enter a domain to check.');
 
-  const response = await fetch(`${CRTSH_URL}${encodeURIComponent(host)}&output=json`);
-  if (!response.ok) throw new Error('crt.sh lookup failed. Try again shortly.');
-
-  const text = await response.text();
-  if (!text.trim()) throw new Error(`No certificates found for ${host}.`);
-
-  const entries = JSON.parse(text);
+  const entries = await fetchCrtSh(host);
   const certificates = dedupeAndSortEntries(entries);
   if (certificates.length === 0) throw new Error(`No certificates found for ${host}.`);
 
