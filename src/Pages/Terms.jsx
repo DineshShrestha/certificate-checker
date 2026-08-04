@@ -1,6 +1,8 @@
 import React from 'react'
+import useDocumentTitle from '../hooks/useDocumentTitle'
 
 export default function Terms() {
+  useDocumentTitle('Terms of Service - Certificate Checker')
   return (
     <div className="py-5">
       <h1 className="mb-4">Terms of Service</h1>
