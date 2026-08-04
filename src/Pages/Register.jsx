@@ -1,23 +1,35 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import useDocumentTitle from '../hooks/useDocumentTitle'
 
 export default function Register() {
   useDocumentTitle('Register - Certificate Checker')
-  const { signUp } = useAuth()
+  const { user, signUp } = useAuth()
   const navigate = useNavigate()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+  const [agreed, setAgreed] = useState(false)
   const [error, setError] = useState(null)
   const [message, setMessage] = useState(null)
   const [loading, setLoading] = useState(false)
 
+  useEffect(() => {
+    if (user) navigate('/')
+  }, [user, navigate])
+
   async function handleSubmit(e) {
     e.preventDefault()
-    setLoading(true)
     setError(null)
     setMessage(null)
+
+    if (password !== confirmPassword) {
+      setError('Passwords do not match.')
+      return
+    }
+
+    setLoading(true)
     const { data, error } = await signUp(email, password)
     setLoading(false)
     if (error) {
@@ -58,9 +70,34 @@ export default function Register() {
             required
           />
         </div>
+        <div className="mb-3">
+          <label className="form-label" htmlFor="register-confirm-password">Confirm Password</label>
+          <input
+            id="register-confirm-password"
+            type="password"
+            className="form-control"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            minLength={6}
+            required
+          />
+        </div>
+        <div className="mb-3 form-check">
+          <input
+            id="register-agree"
+            type="checkbox"
+            className="form-check-input"
+            checked={agreed}
+            onChange={(e) => setAgreed(e.target.checked)}
+            required
+          />
+          <label className="form-check-label" htmlFor="register-agree">
+            I agree to the <Link to="/terms">Terms of Service</Link> and <Link to="/privacy">Privacy Policy</Link>
+          </label>
+        </div>
         {error && <p className="text-danger">{error}</p>}
         {message && <p className="text-success">{message}</p>}
-        <button type="submit" className="btn btn-primary button w-100" disabled={loading}>
+        <button type="submit" className="btn btn-primary button w-100" disabled={loading || !agreed}>
           {loading ? 'Creating account...' : 'Register'}
         </button>
       </form>
