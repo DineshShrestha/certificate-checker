@@ -29,7 +29,7 @@ export default function Customer() {
         {TESTIMONIALS.map((testimonial, i) => (
           <div className={`carousel-item ${i === 0 ? 'active' : ''}`} key={testimonial.name}>
             <img src={testimonial.image} className="d-block w-100" alt={testimonial.name} />
-            <div className="carousel-caption testimonial-caption d-none d-md-block text-start">
+            <div className="carousel-caption testimonial-caption text-start">
               <h5 className="fs-3 fw-bold text-white">{testimonial.title}</h5>
               <blockquote className="blockquote mb-0">
                 <p className="fs-6 text-white-50 mb-1">{testimonial.quote}</p>
