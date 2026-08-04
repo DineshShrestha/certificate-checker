@@ -49,7 +49,14 @@ export default function Pricing() {
                 <ul className="list-unstyled mt-3 mb-4">
                   {plan.features.map((feature) => <li key={feature}>{feature}</li>)}
                 </ul>
-                <button type="button" className={`w-100 btn btn-lg ${plan.button} button`}>{plan.cta}</button>
+                {plan.name === 'Free' ? (
+                  <a href="/#checker" className={`w-100 btn btn-lg ${plan.button} button`}>Start checking for free</a>
+                ) : (
+                  <>
+                    <button type="button" disabled className={`w-100 btn btn-lg ${plan.button} button`}>Coming soon</button>
+                    <p className="text-muted small mt-2 mb-0">Contact us to get early access.</p>
+                  </>
+                )}
               </div>
             </div>
           </div>
