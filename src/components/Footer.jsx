@@ -1,11 +1,32 @@
 
 import React from 'react'
+import { Link } from 'react-router-dom'
 import Logo from './Logo'
 
 const FOOTER_COLUMNS = [
-  { title: 'Product', links: ['Check a Certificate', 'Features', 'Pricing'] },
-  { title: 'Resources', links: ['Documentation', 'API', 'Status'] },
-  { title: 'Company', links: ['About', 'Privacy', 'Terms'] },
+  {
+    title: 'Product',
+    links: [
+      { label: 'Check a Certificate', href: '/#checker' },
+      { label: 'Features', href: '/#hanging-icons' },
+      { label: 'Pricing', href: '/#pricing' },
+    ],
+  },
+  {
+    title: 'Resources',
+    links: [
+      { label: 'Documentation', href: 'https://github.com/DineshShrestha/certificate-checker#readme' },
+      { label: 'Source Code', href: 'https://github.com/DineshShrestha/certificate-checker' },
+    ],
+  },
+  {
+    title: 'Company',
+    links: [
+      { label: 'About', to: '/about' },
+      { label: 'Privacy', to: '/privacy' },
+      { label: 'Terms', to: '/terms' },
+    ],
+  },
 ]
 
 const Footer = ()=>{
@@ -20,7 +41,13 @@ const Footer = ()=>{
           <h5>{column.title}</h5>
           <ul className="list-unstyled text-small">
             {column.links.map((link) => (
-              <li className="mb-1" key={link}><a className="link-secondary text-decoration-none" href="#">{link}</a></li>
+              <li className="mb-1" key={link.label}>
+                {link.to ? (
+                  <Link className="link-secondary text-decoration-none" to={link.to}>{link.label}</Link>
+                ) : (
+                  <a className="link-secondary text-decoration-none" href={link.href}>{link.label}</a>
+                )}
+              </li>
             ))}
           </ul>
         </div>
