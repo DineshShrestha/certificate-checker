@@ -1,5 +1,16 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Authentication Setup
+
+This app uses [Supabase](https://supabase.com) Auth for user accounts (email/password login and registration).
+
+1. Create a free project at [supabase.com](https://supabase.com).
+2. In the project dashboard, go to **Project Settings → API** and copy the **Project URL** and the **anon public** key.
+3. Copy `.env.example` to `.env` in the repo root and paste those values in as `REACT_APP_SUPABASE_URL` and `REACT_APP_SUPABASE_ANON_KEY`.
+4. Restart `npm start` after adding or changing `.env` — CRA only reads env vars at server start.
+
+Without this, the site still runs, but Login/Register will fail since there's no real backend configured.
+
 ## Available Scripts
 
 In the project directory, you can run:
