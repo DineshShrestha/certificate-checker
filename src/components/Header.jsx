@@ -33,12 +33,12 @@ const Header = ()=>{
           {user ? (
             <>
               <span className="text-muted small">{user.email}</span>
-              <button type="button" className="btn btn-outline-secondary btn-sm" onClick={signOut}>Log Out</button>
+              <button type="button" className="nav-link px-2 link-body-emphasis border-0 bg-transparent" onClick={signOut}>Log Out</button>
             </>
           ) : (
             <>
-              <Link to="/login" className="btn btn-outline-primary btn-sm">Log In</Link>
-              <Link to="/register" className="btn btn-primary btn-sm">Register</Link>
+              <Link to="/login" className="nav-link px-2 link-body-emphasis">Log In</Link>
+              <Link to="/register" className="btn btn-primary button btn-sm">Register</Link>
             </>
           )}
         </div>
