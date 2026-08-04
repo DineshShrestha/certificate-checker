@@ -1,12 +1,12 @@
 import React from 'react'
 import John from "../assets/customer/john.jpg"
-import Michael from "../assets/customer/kellt.jpg"
-import Kelly from "../assets/customer/Michael.jpg"
+import Kelly from "../assets/customer/kellt.jpg"
+import Michael from "../assets/customer/Michael.jpg"
 
 const TESTIMONIALS = [
-  { image: Kelly, name: 'Kelly T.', title: 'Outstanding Service', quote: "I've never experienced such attentive and personalized service. Certificate Checker exceeded all my expectations!" },
-  { image: John, name: 'Michael R.', title: 'Trustworthy and Reliable', quote: "I've always felt confident in choosing Certificate Checker. They are trustworthy and deliver on their promises." },
-  { image: Michael, name: 'John S.', title: 'Exceptional Quality', quote: "The quality of their products and services is top-notch. I'm a loyal customer for life." },
+  { image: Kelly, name: 'Kelly T.', title: 'Outstanding Service', quote: "I've never experienced such attentive and personalized service. Certificate Checker exceeded all my expectations." },
+  { image: Michael, name: 'Michael R.', title: 'Trustworthy and Reliable', quote: "I've always felt confident choosing Certificate Checker. They're reliable and deliver on their promises." },
+  { image: John, name: 'John S.', title: 'Exceptional Quality', quote: "The quality of their product and support is top-notch. I'm a customer for life." },
 ]
 
 export default function Customer() {
@@ -28,14 +28,13 @@ export default function Customer() {
       <div className="carousel-inner border rounded-3">
         {TESTIMONIALS.map((testimonial, i) => (
           <div className={`carousel-item ${i === 0 ? 'active' : ''}`} key={testimonial.name}>
-            <img src={testimonial.image} className="d-block w-100 opacity-75" alt={testimonial.name} />
-            <div className="carousel-caption d-none d-md-block">
-              <h5 className="display-4 fs-2">{testimonial.title}</h5>
-              <figure>
-                <blockquote className="blockquote">
-                  <p className="text-dark">{testimonial.quote} &mdash; <em>{testimonial.name}</em></p>
-                </blockquote>
-              </figure>
+            <img src={testimonial.image} className="d-block w-100" alt={testimonial.name} />
+            <div className="carousel-caption testimonial-caption d-none d-md-block text-start">
+              <h5 className="fs-3 fw-bold text-white">{testimonial.title}</h5>
+              <blockquote className="blockquote mb-0">
+                <p className="fs-6 text-white-50 mb-1">{testimonial.quote}</p>
+                <footer className="fs-6 text-white">&mdash; {testimonial.name}</footer>
+              </blockquote>
             </div>
           </div>
         ))}

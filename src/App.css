@@ -22,3 +22,12 @@ p {
     left: 0;
     min-height: 400px;
 }
+
+.testimonial-caption {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2.5rem 2rem 1.5rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
+  border-radius: 0 0 0.375rem 0.375rem;
+}
