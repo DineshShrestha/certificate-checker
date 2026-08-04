@@ -20,26 +20,31 @@ const TOGGLES_ICON = (
 )
 
 const FEATURES = [
-  { icon: TOOLS_ICON, title: 'Real-Time Monitoring', items: ['Continuous SSL monitoring', 'Instant alerts'] },
-  { icon: CPU_ICON, title: 'Detailed Reporting', items: ['Comprehensive reports', 'Historical data'] },
-  { icon: TOGGLES_ICON, title: 'Multi-Domain Support', items: ['Multiple domains per account', 'Wildcard and SAN certificates'] },
-  { icon: TOGGLES_ICON, title: 'Expiration Alerts', items: ['Advance notifications', 'Customizable thresholds'] },
-  { icon: TOOLS_ICON, title: 'Vulnerability Assessment', items: ['Security vulnerability scans', 'Remediation advice'] },
-  { icon: CPU_ICON, title: 'User-Friendly Dashboard', items: ['Intuitive interface', 'Custom views'] },
-  { icon: TOGGLES_ICON, title: 'Automated Renewals', items: ['Automatic renewal support', 'CA integrations'] },
-  { icon: TOGGLES_ICON, title: 'Advanced Analytics', items: ['Real-time analytics', 'Trend analysis'] },
-  { icon: TOOLS_ICON, title: 'API Access', items: ['Developer-friendly API', 'Custom integrations'] },
-  { icon: CPU_ICON, title: '24/7 Support', items: ['Expert assistance', 'Knowledge base'] },
+  { icon: CPU_ICON, title: 'Certificate Lookup & History', items: ['Issuer, validity and expiry via crt.sh', 'Certificate history from CT logs'], status: 'available', href: '/#checker' },
+  { icon: TOOLS_ICON, title: 'Real-Time Monitoring', items: ['Continuous SSL monitoring', 'Instant alerts'], status: 'soon' },
+  { icon: TOGGLES_ICON, title: 'Multi-Domain Support', items: ['Multiple domains per account', 'Wildcard and SAN certificates'], status: 'soon' },
+  { icon: TOOLS_ICON, title: 'Vulnerability Assessment', items: ['Security vulnerability scans', 'Remediation advice'], status: 'soon' },
+  { icon: CPU_ICON, title: 'User-Friendly Dashboard', items: ['Intuitive interface', 'Custom views'], status: 'soon' },
+  { icon: TOGGLES_ICON, title: 'Automated Renewals', items: ['Automatic renewal support', 'CA integrations'], status: 'soon' },
+  { icon: TOGGLES_ICON, title: 'Advanced Analytics', items: ['Real-time analytics', 'Trend analysis'], status: 'soon' },
+  { icon: TOOLS_ICON, title: 'API Access', items: ['Developer-friendly API', 'Custom integrations'], status: 'soon' },
+  { icon: CPU_ICON, title: '24/7 Support', items: ['Expert assistance', 'Knowledge base'], status: 'soon' },
 ]
 
-function FeatureCard({ icon, title, items }) {
+function FeatureCard({ icon, title, items, status, href }) {
+  const titleEl = <h3 className="fs-5 mb-0">{title}</h3>
   return (
     <div className="col d-flex align-items-start">
       <div className="icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-5 flex-shrink-0 me-3 featureIcon">
         {icon}
       </div>
       <div>
-        <h3 className="fs-5">{title}</h3>
+        <div className="d-flex align-items-center gap-2 mb-1">
+          {href ? <a href={href}>{titleEl}</a> : titleEl}
+          {status === 'available'
+            ? <span className="badge text-bg-success">Available now</span>
+            : <span className="badge text-bg-secondary">Coming soon</span>}
+        </div>
         <ul className="list-unstyled text-small">
           {items.map((item) => <li className="mb-1" key={item}>{item}</li>)}
         </ul>
