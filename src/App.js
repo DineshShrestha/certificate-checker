@@ -6,24 +6,31 @@ import HomeScreen from './Pages/HomeScreen';
 import About from './Pages/About';
 import Privacy from './Pages/Privacy';
 import Terms from './Pages/Terms';
+import Login from './Pages/Login';
+import Register from './Pages/Register';
 import NotFound from './Pages/NotFound';
+import { AuthProvider } from './context/AuthContext';
 import "./App.css"
 
 function App() {
   return (
-    <BrowserRouter>
-      <div className="container">
-        <Header/>
-        <Routes>
-          <Route path="/" element={<HomeScreen/>} />
-          <Route path="/about" element={<About/>} />
-          <Route path="/privacy" element={<Privacy/>} />
-          <Route path="/terms" element={<Terms/>} />
-          <Route path="*" element={<NotFound/>} />
-        </Routes>
-        <Footer/>
-      </div>
-    </BrowserRouter>
+    <AuthProvider>
+      <BrowserRouter>
+        <div className="container">
+          <Header/>
+          <Routes>
+            <Route path="/" element={<HomeScreen/>} />
+            <Route path="/about" element={<About/>} />
+            <Route path="/privacy" element={<Privacy/>} />
+            <Route path="/terms" element={<Terms/>} />
+            <Route path="/login" element={<Login/>} />
+            <Route path="/register" element={<Register/>} />
+            <Route path="*" element={<NotFound/>} />
+          </Routes>
+          <Footer/>
+        </div>
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 

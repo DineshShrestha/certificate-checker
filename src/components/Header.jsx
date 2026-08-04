@@ -2,6 +2,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Logo from './Logo'
+import { useAuth } from '../context/AuthContext'
 
 const NAV_LINKS = [
   { label: 'Check a Certificate', href: '/#checker', className: 'nav-link px-2 link-secondary' },
@@ -10,6 +11,8 @@ const NAV_LINKS = [
 ]
 
 const Header = ()=>{
+  const { user, signOut } = useAuth()
+
   return (
     <header className="p-3 mb-3 border-bottom">
     <div className="container-fluid">
@@ -25,6 +28,20 @@ const Header = ()=>{
             ))}
           </ul>
         </nav>
+
+        <div className="d-flex align-items-center gap-2">
+          {user ? (
+            <>
+              <span className="text-muted small">{user.email}</span>
+              <button type="button" className="btn btn-outline-secondary btn-sm" onClick={signOut}>Log Out</button>
+            </>
+          ) : (
+            <>
+              <Link to="/login" className="btn btn-outline-primary btn-sm">Log In</Link>
+              <Link to="/register" className="btn btn-primary btn-sm">Register</Link>
+            </>
+          )}
+        </div>
       </div>
     </div>
   </header>
