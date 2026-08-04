@@ -38,18 +38,20 @@ const Footer = ()=>{
       </div>
       {FOOTER_COLUMNS.map((column) => (
         <div className="col-6 col-md" key={column.title}>
-          <h5>{column.title}</h5>
-          <ul className="list-unstyled text-small">
-            {column.links.map((link) => (
-              <li className="mb-1" key={link.label}>
-                {link.to ? (
-                  <Link className="link-secondary text-decoration-none" to={link.to}>{link.label}</Link>
-                ) : (
-                  <a className="link-secondary text-decoration-none" href={link.href}>{link.label}</a>
-                )}
-              </li>
-            ))}
-          </ul>
+          <nav aria-label={column.title}>
+            <h5>{column.title}</h5>
+            <ul className="list-unstyled text-small">
+              {column.links.map((link) => (
+                <li className="mb-1" key={link.label}>
+                  {link.to ? (
+                    <Link className="link-secondary text-decoration-none" to={link.to}>{link.label}</Link>
+                  ) : (
+                    <a className="link-secondary text-decoration-none" href={link.href}>{link.label}</a>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </nav>
         </div>
       ))}
       <small className="d-block mb-5 text-muted mt-0">&copy; 2017&ndash;{new Date().getFullYear()} Certificate Checker</small>
