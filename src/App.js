@@ -6,6 +6,7 @@ import HomeScreen from './Pages/HomeScreen';
 import About from './Pages/About';
 import Privacy from './Pages/Privacy';
 import Terms from './Pages/Terms';
+import NotFound from './Pages/NotFound';
 import "./App.css"
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           <Route path="/about" element={<About/>} />
           <Route path="/privacy" element={<Privacy/>} />
           <Route path="/terms" element={<Terms/>} />
+          <Route path="*" element={<NotFound/>} />
         </Routes>
         <Footer/>
       </div>
