@@ -1,6 +1,8 @@
 import React from 'react'
+import useDocumentTitle from '../hooks/useDocumentTitle'
 
 export default function Privacy() {
+  useDocumentTitle('Privacy Policy - Certificate Checker')
   return (
     <div className="py-5">
       <h1 className="mb-4">Privacy Policy</h1>

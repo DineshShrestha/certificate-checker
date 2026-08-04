@@ -1,6 +1,8 @@
 import React from 'react'
+import useDocumentTitle from '../hooks/useDocumentTitle'
 
 export default function About() {
+  useDocumentTitle('About - Certificate Checker')
   return (
     <div className="py-5">
       <h1 className="mb-4">About Certificate Checker</h1>
