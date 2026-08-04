@@ -20,18 +20,45 @@ const TOGGLES_ICON = (
 )
 
 const FEATURES = [
-  { icon: CPU_ICON, title: 'Certificate Lookup & History', items: ['Issuer, validity and expiry via crt.sh', 'Certificate history from CT logs'], status: 'available', href: '/#checker' },
-  { icon: TOOLS_ICON, title: 'Real-Time Monitoring', items: ['Continuous SSL monitoring', 'Instant alerts'], status: 'soon' },
-  { icon: TOGGLES_ICON, title: 'Multi-Domain Support', items: ['Multiple domains per account', 'Wildcard and SAN certificates'], status: 'soon' },
-  { icon: TOOLS_ICON, title: 'Vulnerability Assessment', items: ['Security vulnerability scans', 'Remediation advice'], status: 'soon' },
-  { icon: CPU_ICON, title: 'User-Friendly Dashboard', items: ['Intuitive interface', 'Custom views'], status: 'soon' },
-  { icon: TOGGLES_ICON, title: 'Automated Renewals', items: ['Automatic renewal support', 'CA integrations'], status: 'soon' },
-  { icon: TOGGLES_ICON, title: 'Advanced Analytics', items: ['Real-time analytics', 'Trend analysis'], status: 'soon' },
-  { icon: TOOLS_ICON, title: 'API Access', items: ['Developer-friendly API', 'Custom integrations'], status: 'soon' },
-  { icon: CPU_ICON, title: '24/7 Support', items: ['Expert assistance', 'Knowledge base'], status: 'soon' },
+  {
+    icon: CPU_ICON, title: 'Certificate Lookup & History', items: ['Issuer, validity and expiry via crt.sh', 'Certificate history from CT logs'], status: 'available', href: '/#checker',
+    detail: "Enter any domain to see its current certificate's issuer, validity period, and expiration status, plus every certificate it's had issued going back through public Certificate Transparency logs (via crt.sh).",
+  },
+  {
+    icon: TOOLS_ICON, title: 'Real-Time Monitoring', items: ['Continuous SSL monitoring', 'Instant alerts'], status: 'soon',
+    detail: 'Would continuously re-check your domains on a schedule and email you before a certificate expires. Not yet built — there is no scheduling or notification backend behind this today.',
+  },
+  {
+    icon: TOGGLES_ICON, title: 'Multi-Domain Support', items: ['Multiple domains per account', 'Wildcard and SAN certificates'], status: 'soon',
+    detail: "Would let you save a list of domains, including wildcard and SAN certificates, and see all their statuses in one place. No accounts or saved-domain storage exist yet — today's lookup is one domain at a time.",
+  },
+  {
+    icon: TOOLS_ICON, title: 'Vulnerability Assessment', items: ['Security vulnerability scans', 'Remediation advice'], status: 'soon',
+    detail: "Would scan a domain's TLS configuration for weak ciphers, protocol issues, and known vulnerabilities with remediation guidance. This scanning engine has not been built.",
+  },
+  {
+    icon: CPU_ICON, title: 'User-Friendly Dashboard', items: ['Intuitive interface', 'Custom views'], status: 'soon',
+    detail: "Would give you a single dashboard summarizing all your saved domains' certificate health at a glance. No accounts or dashboards exist yet — only the one-off lookup above.",
+  },
+  {
+    icon: TOGGLES_ICON, title: 'Automated Renewals', items: ['Automatic renewal support', 'CA integrations'], status: 'soon',
+    detail: 'Would integrate with your certificate authority to renew certificates automatically before they expire. No CA integration or renewal automation exists today.',
+  },
+  {
+    icon: TOGGLES_ICON, title: 'Advanced Analytics', items: ['Real-time analytics', 'Trend analysis'], status: 'soon',
+    detail: 'Would chart trends across your certificate history — issuer changes, renewal cadence, expiry patterns over time. No analytics pipeline exists behind this yet.',
+  },
+  {
+    icon: TOOLS_ICON, title: 'API Access', items: ['Developer-friendly API', 'Custom integrations'], status: 'soon',
+    detail: 'Would expose this certificate-lookup capability as a documented API you could call from your own tools. No public API exists yet — only this web page.',
+  },
+  {
+    icon: CPU_ICON, title: '24/7 Support', items: ['Expert assistance', 'Knowledge base'], status: 'soon',
+    detail: 'Would provide a support team and knowledge base for help with certificate issues. There is no support staffing or knowledge base behind this today.',
+  },
 ]
 
-function FeatureCard({ icon, title, items, status, href }) {
+function FeatureCard({ icon, title, items, status, href, detail }) {
   const titleEl = <h3 className="fs-5 mb-0">{title}</h3>
   return (
     <div className="col d-flex align-items-start">
@@ -48,6 +75,10 @@ function FeatureCard({ icon, title, items, status, href }) {
         <ul className="list-unstyled text-small">
           {items.map((item) => <li className="mb-1" key={item}>{item}</li>)}
         </ul>
+        <details>
+          <summary className="text-muted text-small">More details</summary>
+          <p className="text-small mt-2 mb-0">{detail}</p>
+        </details>
       </div>
     </div>
   )
